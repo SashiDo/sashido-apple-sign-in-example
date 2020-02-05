@@ -1,0 +1,6 @@
+framework module Pods_SashiDo_Apple_Sign_In {
+  umbrella header "Pods-SashiDo-Apple-Sign-In-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -7,16 +7,46 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var applicationId = ""
+    var clientKey = ""
+    var serverURL = ""
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        parseInit()
+        
         return true
+    }
+    
+    func parseInit () {
+        if applicationId.isEmpty {
+            fatalError("missing applicationID")
+        }
+        
+        if clientKey.isEmpty {
+            fatalError("missing clientKey")
+        }
+        
+        if serverURL.isEmpty {
+            fatalError("missing serverURL")
+        }
+        
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = self.applicationId
+            $0.clientKey = self.clientKey
+            $0.server = self.serverURL
+        }
+        
+        Parse.initialize(with: configuration)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
